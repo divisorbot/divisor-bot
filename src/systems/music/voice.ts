@@ -1,5 +1,5 @@
 import { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus, VoiceConnection, AudioPlayer } from '@discordjs/voice';
-import { VoiceChannel, TextChannel } from 'discord.js';
+import { VoiceBasedChannel, TextChannel } from 'discord.js';
 import ytdl from 'ytdl-core';
 import { Track } from './types';
 
@@ -8,13 +8,13 @@ export class VoiceManager {
   private player: AudioPlayer | null = null;
   private currentResource: any = null;
 
-  constructor(private voiceChannel: VoiceChannel, private textChannel: TextChannel) {}
+  constructor(private voiceChannel: VoiceBasedChannel, private textChannel: TextChannel) {}
 
   connect(): void {
     this.connection = joinVoiceChannel({
       channelId: this.voiceChannel.id,
       guildId: this.voiceChannel.guild.id,
-      adapterCreator: this.voiceChannel.guild.voiceAdapterCreator,
+      adapterCreator: this.voiceChannel.guild.voiceAdapterCreator as any,
     });
 
     this.player = createAudioPlayer();

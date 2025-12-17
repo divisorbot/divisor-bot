@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } from 'discord.js';
 
 export const data = new SlashCommandBuilder()
   .setName('serverinfo')
@@ -6,6 +6,7 @@ export const data = new SlashCommandBuilder()
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
   const guild = interaction.guild;
+  if (!guild) return;
   const embed = new EmbedBuilder()
     .setTitle(guild.name)
     .setThumbnail(guild.iconURL())

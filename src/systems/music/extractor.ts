@@ -1,4 +1,5 @@
 import ytdl from 'ytdl-core';
+// @ts-ignore
 import { getData } from 'spotify-url-info';
 import { Track } from './types';
 

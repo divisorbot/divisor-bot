@@ -1,4 +1,4 @@
-import { VoiceChannel, TextChannel, GuildMember } from 'discord.js';
+import { VoiceBasedChannel, TextChannel, GuildMember } from 'discord.js';
 import { MusicPlayer, Track } from './types';
 import { VoiceManager } from './voice';
 import { QueueManager } from './queue';
@@ -9,7 +9,7 @@ export class MusicPlayerManager {
   private voiceManager: VoiceManager;
   private queueManager: QueueManager;
 
-  constructor(guildId: string, voiceChannel: VoiceChannel, textChannel: TextChannel, member: GuildMember) {
+  constructor(guildId: string, voiceChannel: VoiceBasedChannel, textChannel: TextChannel, member: GuildMember) {
     this.player = {
       guildId,
       voiceChannelId: voiceChannel.id,

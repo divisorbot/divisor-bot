@@ -30,11 +30,19 @@ export const loadCommands = async (client: Client): Promise<void> => {
   const rest = new REST({ version: '9' }).setToken(config.DISCORD_TOKEN);
 
   try {
-    await rest.put(
-      Routes.applicationCommands(config.CLIENT_ID),
-      { body: commands },
-    );
-    console.log('Successfully registered application commands.');
+    if (config.GUILD_ID) {
+      await rest.put(
+        Routes.applicationGuildCommands(config.CLIENT_ID, config.GUILD_ID),
+        { body: commands },
+      );
+      console.log('Successfully registered guild application commands.');
+    } else {
+      await rest.put(
+        Routes.applicationCommands(config.CLIENT_ID),
+        { body: commands },
+      );
+      console.log('Successfully registered global application commands.');
+    }
   } catch (error) {
     console.error(error);
   }

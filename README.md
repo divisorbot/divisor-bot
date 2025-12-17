@@ -62,9 +62,15 @@ Utility: join, reconnect, fix
 
 1. Clone the repository.
 2. Install dependencies: `npm install`
-3. Create a `.env` file based on `.env.example` with your Discord bot token, client ID, and MongoDB URI.
+3. Create a `.env` file based on `.env.example` with your Discord bot token, client ID, MongoDB URI, and optionally GUILD_ID for testing.
 4. Build the project: `npm run build`
 5. Start the bot: `npm start`
+
+## Discord Bot Setup
+
+- Invite the bot to your server with the following permissions: `bot`, `applications.commands`
+- For testing, set `GUILD_ID` in `.env` to register commands instantly in that guild.
+- Without `GUILD_ID`, commands register globally (may take up to 1 hour to appear).
 
 ## MongoDB Setup
 

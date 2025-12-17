@@ -3,7 +3,9 @@ import { MusicPlayerManager } from './player';
 import { extractTrack } from './extractor';
 import { Track } from './types';
 
-export const ensureVoiceChannel = (interaction: ChatInputCommandInteraction): VoiceChannel | null => {
+import { VoiceBasedChannel } from 'discord.js';
+
+export const ensureVoiceChannel = (interaction: ChatInputCommandInteraction): VoiceBasedChannel | null => {
   const member = interaction.member as GuildMember;
   const voiceChannel = member.voice.channel;
   if (!voiceChannel) {

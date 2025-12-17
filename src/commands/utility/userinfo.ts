@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } from 'discord.js';
 
 export const data = new SlashCommandBuilder()
   .setName('userinfo')
@@ -11,7 +11,7 @@ export const data = new SlashCommandBuilder()
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
   const user = interaction.options.getUser('user') || interaction.user;
-  const member = interaction.guild.members.cache.get(user.id);
+  const member = interaction.guild?.members.cache.get(user.id);
   const embed = new EmbedBuilder()
     .setTitle(user.username)
     .setThumbnail(user.displayAvatarURL())

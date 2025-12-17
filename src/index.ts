@@ -1,3 +1,4 @@
+import { ActivityType } from 'discord.js';
 import { createClient } from './client/createClient';
 import { loadCommands } from './client/commandLoader';
 import { loadEvents } from './client/eventLoader';
@@ -13,6 +14,7 @@ const init = async (): Promise<void> => {
 
   client.once('ready', () => {
     console.log(`Logged in as ${client.user?.tag}!`);
+    client.user?.setActivity('Being built by Ramkrishna', { type: ActivityType.Watching });
   });
 
   await client.login(config.DISCORD_TOKEN);

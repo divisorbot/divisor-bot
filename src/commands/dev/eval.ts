@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
+import { SlashCommandBuilder, PermissionFlagsBits, ChatInputCommandInteraction } from 'discord.js';
 
 export const data = new SlashCommandBuilder()
   .setName('eval')
@@ -11,7 +11,7 @@ export const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
-  const code = interaction.options.getString('code');
+  const code = interaction.options.getString('code')!;
   try {
     let result = eval(code);
     if (typeof result !== 'string') result = require('util').inspect(result);

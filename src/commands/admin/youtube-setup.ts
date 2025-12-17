@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
+import { SlashCommandBuilder, PermissionFlagsBits, ChatInputCommandInteraction } from 'discord.js';
 import { YouTubeConfig } from '../../systems/youtubeProof/config.model';
 
 export const data = new SlashCommandBuilder()
@@ -22,10 +22,15 @@ export const data = new SlashCommandBuilder()
   .setDefaultMemberPermissions(PermissionFlagsBits.Administrator);
 
 export const execute = async (interaction: ChatInputCommandInteraction) => {
+  const guild = interaction.guild;
+  if (!guild) return;
   const channel = interaction.options.getChannel('channel');
+  if (!channel) return;
   const youtubeUrl = interaction.options.getString('youtube_url');
+  if (!youtubeUrl) return;
   const role = interaction.options.getRole('role');
-  const guildId = interaction.guild.id;
+  if (!role) return;
+  const guildId = guild.id;
 
   await YouTubeConfig.findOneAndUpdate(
     { guildId },
