@@ -1,0 +1,9 @@
+import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
+
+export const data = new SlashCommandBuilder()
+  .setName('stats8')
+  .setDescription('Stats command 8');
+
+export const execute = async (interaction: ChatInputCommandInteraction) => {
+  await interaction.reply('This stats command is not yet implemented.');
+};
